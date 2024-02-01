@@ -1,5 +1,6 @@
 
-
+import os
+import dj_database_url
 from pathlib import Path
 from django.contrib.messages import constants as messages
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -92,6 +93,9 @@ DATABASES = {
 	}
 }
 
+database_url=os.environ.get("DATABASE_URL")
+DATABASES['default']= dj_database_url.parse(database_url)
+#postgres://django_api_rcyp_user:eH8NNSSvGt82ysVLxJ82rfShNKdHFPPi@dpg-cmtt7dn109ks73af6o20-a.oregon-postgres.render.com/django_api_rcyp
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
