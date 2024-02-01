@@ -1,0 +1,14 @@
+# Environments
+venv
+venv/
+.venv
+./venv
+venv/
+Scripts/
+/Scripts
+.Scripts
+Scripts
+/Scripts
+
+
+
