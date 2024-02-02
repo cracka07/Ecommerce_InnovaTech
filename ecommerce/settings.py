@@ -76,30 +76,21 @@ AUTH_USER_MODEL='accounts.Account'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.sqlite3",
-#         "NAME": BASE_DIR / "db.sqlite3",
-#     }
-# }
-# DATABASES = {
-# 	'default': {
-# 		'ENGINE':'django.db.backends.postgresql_psycopg2',
-# 		'NAME':'tech_db',
-# 		'USER':'postgres',
-# 		'PASSWORD':'fadeM3',
-# 		'HOST':'localhost', 
-# 		'PORT':'5432' 
-# 	}
-# }
+DATABASES = {
+	'default': {
+		'ENGINE':'django.db.backends.postgresql_psycopg2',
+		'NAME':'tech_db',
+		'USER':'postgres',
+		'PASSWORD':'fadeM3',
+		'HOST':'localhost', 
+		'PORT':'5432' 
+	}
+}
 
 #database_url=os.environ.get("DATABASE_URL")
-DATABASES = {
-    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
-}
-# DATABASES = {
-#     'default': dj_database_url.parse('postgres://postgres:fadeM3@localhost:5432/tech_db')
-# }
+DATABASES['default']= dj_database_url.parse('postgres://tech_t0jz_user:8Rj9mZlcgCpxs3rZ7wriUM2DGXg63ZU9@dpg-cmu90hvqd2ns738h3fmg-a.oregon-postgres.render.com/tech_t0jz')
+
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
