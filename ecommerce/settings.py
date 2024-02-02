@@ -82,20 +82,23 @@ AUTH_USER_MODEL='accounts.Account'
 #         "NAME": BASE_DIR / "db.sqlite3",
 #     }
 # }
+# DATABASES = {
+# 	'default': {
+# 		'ENGINE':'django.db.backends.postgresql_psycopg2',
+# 		'NAME':'tech_db',
+# 		'USER':'postgres',
+# 		'PASSWORD':'fadeM3',
+# 		'HOST':'localhost', 
+# 		'PORT':'5432' 
+# 	}
+# }
+
+#database_url=os.environ.get("DATABASE_URL")
+# DATABASES = {'default': dj_database_url.parse('postgres://django_api_rcyp_user:eH8NNSSvGt82ysVLxJ82rfShNKdHFPPi@dpg-cmtt7dn109ks73af6o20-a.oregon-postgres.render.com/django_api_rcyp')}
 DATABASES = {
-	'default': {
-		'ENGINE':'django.db.backends.postgresql_psycopg2',
-		'NAME':'tech_db',
-		'USER':'postgres',
-		'PASSWORD':'fadeM3',
-		'HOST':'localhost', 
-		'PORT':'5432' 
-	}
+    'default': dj_database_url.parse('postgres://postgres:fadeM3@localhost:5432/tech_db')
 }
 
-database_url=os.environ.get("DATABASE_URL")
-DATABASES['default']= dj_database_url.parse(database_url)
-#postgres://django_api_rcyp_user:eH8NNSSvGt82ysVLxJ82rfShNKdHFPPi@dpg-cmtt7dn109ks73af6o20-a.oregon-postgres.render.com/django_api_rcyp
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
