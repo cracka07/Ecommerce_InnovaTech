@@ -94,7 +94,7 @@ AUTH_USER_MODEL='accounts.Account'
 # }
 
 #database_url=os.environ.get("DATABASE_URL")
-# DATABASES = {'default': dj_database_url.parse('postgres://django_api_rcyp_user:eH8NNSSvGt82ysVLxJ82rfShNKdHFPPi@dpg-cmtt7dn109ks73af6o20-a.oregon-postgres.render.com/django_api_rcyp')}
+DATABASES = {'default': dj_database_url.parse('postgres://django_api_rcyp_user:eH8NNSSvGt82ysVLxJ82rfShNKdHFPPi@dpg-cmtt7dn109ks73af6o20-a.oregon-postgres.render.com/django_api_rcyp')}
 DATABASES = {
     'default': dj_database_url.parse('postgres://postgres:fadeM3@localhost:5432/tech_db')
 }
