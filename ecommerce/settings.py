@@ -6,6 +6,11 @@ from django.contrib.messages import constants as messages
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+import environ 
+
+env=environ.Env()
+environ.Env.read_env()
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -76,21 +81,20 @@ AUTH_USER_MODEL='accounts.Account'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-	'default': {
-		'ENGINE':'django.db.backends.postgresql_psycopg2',
-		'NAME':'tech_db',
-		'USER':'postgres',
-		'PASSWORD':'fadeM3',
-		'HOST':'localhost', 
-		'PORT':'5432' 
-	}
+# DATABASES = {
+# 	'default': {
+# 		'ENGINE':'django.db.backends.postgresql_psycopg2',
+# 		'NAME':'tech_db',
+# 		'USER':'postgres',
+# 		'PASSWORD':'fadeM3',
+# 		'HOST':'localhost', 
+# 		'PORT':'5432' 
+# 	}
+# }
+
+DATABASES={
+    'default':dj_database_url.parse(env('DATABASE_URL'))
 }
-
-database_url=os.environ.get("DATABASE_URL")
-DATABASES['default']= dj_database_url.parse(database_url)
-
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
