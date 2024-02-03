@@ -81,22 +81,21 @@ AUTH_USER_MODEL='accounts.Account'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-	'default': {
-		'ENGINE':'django.db.backends.postgresql_psycopg2',
-		'NAME':'tech_db',
-		'USER':'postgres',
-		'PASSWORD':'fadeM3',
-		'HOST':'localhost', 
-		'PORT':'5432' 
-	}
-}
+# DATABASES = {
+# 	'default': {
+# 		'ENGINE':'django.db.backends.postgresql_psycopg2',
+# 		'NAME':'tech_db',
+# 		'USER':'postgres',
+# 		'PASSWORD':'fadeM3',
+# 		'HOST':'localhost', 
+# 		'PORT':'5432' 
+# 	}
+# }
 
 # Configuración para utilizar DATABASE_URL si está definida en las variables de entorno.
 DATABASES = {
-    'default': dj_database_url.config(default=env('DATABASE_URL'))
+    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
 }
-
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
