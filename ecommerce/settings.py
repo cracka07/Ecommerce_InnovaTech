@@ -124,14 +124,14 @@ if 'RENDER_EXTERNAL_HOSTNAME' in os.environ:
 else:
     # Configuración para entorno local
    DATABASES = {
-	'default': {
-		'ENGINE':'django.db.backends.postgresql_psycopg2',
-		'NAME':'tech_db',
-		'USER':'postgres',
-		'PASSWORD':'fadeM3',
-		'HOST':'localhost', 
-		'PORT':'5432' 
-	}
+    'default': {
+        'ENGINE':'django.db.backends.postgresql',
+        'NAME': 'tech_db',
+        'USER': 'postgres',
+        'PASSWORD':'fadeM3',
+        'HOST':'localhost',
+        'PORT':'5432',
+    }
 }
 
     
