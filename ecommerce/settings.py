@@ -6,10 +6,10 @@ from django.contrib.messages import constants as messages
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-import environ 
+# import environ 
 
-env=environ.Env()
-environ.Env.read_env()
+# env=environ.Env()
+# environ.Env.read_env()
 
 
 # Quick-start development settings - unsuitable for production
@@ -93,8 +93,16 @@ AUTH_USER_MODEL='accounts.Account'
 # }
 
 # Configuración para utilizar DATABASE_URL si está definida en las variables de entorno.
+# Don't forget to import dj-database-url at the beginning of the file
+# Database
+# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
+
 DATABASES = {
-    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+    'default': dj_database_url.config(
+        # Feel free to alter this value to suit your needs.
+        default='postgres://tech_t0jz_user:8Rj9mZlcgCpxs3rZ7wriUM2DGXg63ZU9@dpg-cmu90hvqd2ns738h3fmg-a.oregon-postgres.render.com/tech_t0jz',
+        conn_max_age=600
+    )
 }
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
