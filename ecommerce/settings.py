@@ -21,11 +21,8 @@ SECRET_KEY = "django-insecure-$nldih*0%11h5y4qai&l^kzqgu8#d_6uuihs*hwy51^l)@tln3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# ALLOWED_HOSTS = ["127.0.0.1","localhost","innovatechapp.onrender.com"]
-ALLOWED_HOSTS=[]
-RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
-if RENDER_EXTERNAL_HOSTNAME:
-    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+ALLOWED_HOSTS = ["127.0.0.1","localhost","innovatechapp.onrender.com"]
+
 
 # Application definition
 
@@ -109,22 +106,39 @@ AUTH_USER_MODEL='accounts.Account'
 #     )
 # }
         # default='postgres://tech_t0jz_user:8Rj9mZlcgCpxs3rZ7wriUM2DGXg63ZU9@dpg-cmu90hvqd2ns738h3fmg-a.oregon-postgres.render.com/tech_t0jz',
+
 if 'RENDER_EXTERNAL_HOSTNAME' in os.environ:
     # Configuración para Render
     DATABASES = {
-        'default': dj_database_url.config(
-            default='postgres://tech_t0jz_user:8Rj9mZlcgCpxs3rZ7wriUM2DGXg63ZU9@dpg-cmu90hvqd2ns738h3fmg-a.oregon-postgres.render.com/tech_t0jz',
-            conn_max_age=600
-        )
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.environ.get('RENDER_DB_NAME'),
+            'USER': os.environ.get('RENDER_DB_USER'),
+            'PASSWORD': os.environ.get('RENDER_DB_PASSWORD'),
+            'HOST': os.environ.get('RENDER_DB_HOST'),
+            'PORT': os.environ.get('RENDER_DB_PORT', ''),
+            'CONN_MAX_AGE': 600,
+            'CONN_HEALTH_CHECKS': False,
+        }
     }
 else:
     # Configuración para entorno local
-    DATABASES = {
-        'default': dj_database_url.config(
-            default='postgres://postgres:fadeM3@localhost:5432/tech_db',
-            conn_max_age=600
-        )
-    }
+   DATABASES = {
+	'default': {
+		'ENGINE':'django.db.backends.postgresql_psycopg2',
+		'NAME':'tech_db',
+		'USER':'postgres',
+		'PASSWORD':'fadeM3',
+		'HOST':'localhost', 
+		'PORT':'5432' 
+	}
+}
+
+    
+
+# Obtener la URL de la base de datos directamente
+# print("DATABASE URL:",  database_config)
+
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
