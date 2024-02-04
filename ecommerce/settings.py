@@ -6,10 +6,10 @@ from django.contrib.messages import constants as messages
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# import environ 
+import environ 
 
-# env=environ.Env()
-# environ.Env.read_env()
+env=environ.Env()
+environ.Env.read_env()
 
 
 # Quick-start development settings - unsuitable for production
@@ -21,8 +21,11 @@ SECRET_KEY = "django-insecure-$nldih*0%11h5y4qai&l^kzqgu8#d_6uuihs*hwy51^l)@tln3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1","localhost","innovatechapp.onrender.com"]
-
+# ALLOWED_HOSTS = ["127.0.0.1","localhost","innovatechapp.onrender.com"]
+ALLOWED_HOSTS=[]
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 # Application definition
 
@@ -94,16 +97,34 @@ AUTH_USER_MODEL='accounts.Account'
 
 # Configuración para utilizar DATABASE_URL si está definida en las variables de entorno.
 # Don't forget to import dj-database-url at the beginning of the file
+
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-    'default': dj_database_url.config(
-        # Feel free to alter this value to suit your needs.
-        default='postgres://tech_t0jz_user:8Rj9mZlcgCpxs3rZ7wriUM2DGXg63ZU9@dpg-cmu90hvqd2ns738h3fmg-a.oregon-postgres.render.com/tech_t0jz',
-        conn_max_age=600
-    )
-}
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         # Feel free to alter this value to suit your needs.
+#         default='postgres://postgres:fadeM3@localhost:5432/tech_db',
+#         conn_max_age=600
+#     )
+# }
+        # default='postgres://tech_t0jz_user:8Rj9mZlcgCpxs3rZ7wriUM2DGXg63ZU9@dpg-cmu90hvqd2ns738h3fmg-a.oregon-postgres.render.com/tech_t0jz',
+if 'RENDER_EXTERNAL_HOSTNAME' in os.environ:
+    # Configuración para Render
+    DATABASES = {
+        'default': dj_database_url.config(
+            default='postgres://tech_t0jz_user:8Rj9mZlcgCpxs3rZ7wriUM2DGXg63ZU9@dpg-cmu90hvqd2ns738h3fmg-a.oregon-postgres.render.com/tech_t0jz',
+            conn_max_age=600
+        )
+    }
+else:
+    # Configuración para entorno local
+    DATABASES = {
+        'default': dj_database_url.config(
+            default='postgres://postgres:fadeM3@localhost:5432/tech_db',
+            conn_max_age=600
+        )
+    }
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
