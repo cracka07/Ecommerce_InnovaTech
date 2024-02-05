@@ -19,7 +19,7 @@ environ.Env.read_env()
 SECRET_KEY = "django-insecure-$nldih*0%11h5y4qai&l^kzqgu8#d_6uuihs*hwy51^l)@tln3"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = 'RENDER'
 
 ALLOWED_HOSTS = ["127.0.0.1","localhost","innovatechapp.onrender.com"]
 
@@ -92,46 +92,8 @@ AUTH_USER_MODEL='accounts.Account'
 # 	}
 # }
 
-# Configuración para utilizar DATABASE_URL si está definida en las variables de entorno.
-# Don't forget to import dj-database-url at the beginning of the file
-
-# Database
-# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
-# DATABASES = {
-#     'default': dj_database_url.config(
-#         # Feel free to alter this value to suit your needs.
-#         default='postgres://postgres:fadeM3@localhost:5432/tech_db',
-#         conn_max_age=600
-#     )
-# }
-        # default='postgres://tech_t0jz_user:8Rj9mZlcgCpxs3rZ7wriUM2DGXg63ZU9@dpg-cmu90hvqd2ns738h3fmg-a.oregon-postgres.render.com/tech_t0jz',
-
-if 'RENDER_EXTERNAL_HOSTNAME' in os.environ:
-    # Configuración para Render
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': os.environ.get('RENDER_DB_NAME'),
-            'USER': os.environ.get('RENDER_DB_USER'),
-            'PASSWORD': os.environ.get('RENDER_DB_PASSWORD'),
-            'HOST': os.environ.get('RENDER_DB_HOST'),
-            'PORT': os.environ.get('RENDER_DB_PORT', ''),
-            'CONN_MAX_AGE': 600,
-            'CONN_HEALTH_CHECKS': False,
-        }
-    }
-else:
-    # Configuración para entorno local
-   DATABASES = {
-    'default': {
-        'ENGINE':'django.db.backends.postgresql',
-        'NAME': 'tech_db',
-        'USER': 'postgres',
-        'PASSWORD':'fadeM3',
-        'HOST':'localhost',
-        'PORT':'5432',
-    }
+DATABASES = {
+	"default": dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
 
     
