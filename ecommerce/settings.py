@@ -1,15 +1,14 @@
 
 import os
-import dj_database_url
+import dotenv
 from pathlib import Path
 from django.contrib.messages import constants as messages
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-import environ 
 
-env=environ.Env()
-environ.Env.read_env()
+
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -21,7 +20,7 @@ SECRET_KEY = "django-insecure-$nldih*0%11h5y4qai&l^kzqgu8#d_6uuihs*hwy51^l)@tln3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'RENDER'
 
-ALLOWED_HOSTS = ["127.0.0.1","localhost","innovatechapp.onrender.com"]
+ALLOWED_HOSTS = ["127.0.0.1","localhost",".vercer.app"]
 
 
 # Application definition
@@ -81,20 +80,18 @@ AUTH_USER_MODEL='accounts.Account'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-# DATABASES = {
-# 	'default': {
-# 		'ENGINE':'django.db.backends.postgresql_psycopg2',
-# 		'NAME':'tech_db',
-# 		'USER':'postgres',
-# 		'PASSWORD':'fadeM3',
-# 		'HOST':'localhost', 
-# 		'PORT':'5432' 
-# 	}
-# }
-
 DATABASES = {
-	"default": dj_database_url.parse(os.environ.get("DATABASE_URL"))
+	'default': {
+		'ENGINE':'django.db.backends.postgresql_psycopg2',
+		'NAME':'tech_db',
+		'USER':'postgres',
+		'PASSWORD':'fadeM3',
+		'HOST':'localhost', 
+		'PORT':'5432' 
+	}
 }
+
+
 
     
 
