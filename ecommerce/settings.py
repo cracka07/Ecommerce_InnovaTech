@@ -20,7 +20,7 @@ SECRET_KEY = "django-insecure-$nldih*0%11h5y4qai&l^kzqgu8#d_6uuihs*hwy51^l)@tln3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'RENDER'
 
-ALLOWED_HOSTS = ["127.0.0.1","localhost","ecommerce-innova-tech.vercel.app"]
+ALLOWED_HOSTS = ["ecommerce-innova-tech.vercel.app"]
 
 
 # Application definition
