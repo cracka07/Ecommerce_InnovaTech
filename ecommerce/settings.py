@@ -4,10 +4,15 @@ import dotenv
 from pathlib import Path
 from django.contrib.messages import constants as messages
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+
+
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-
+dotenv_file = os.path.join(BASE_DIR, ".env")
+if os.path.isfile(dotenv_file):
+    dotenv.load_dotenv(dotenv_file)
 
 
 
@@ -15,10 +20,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY =os.environ['SECRET_KEY']
+SECRET_KEY ="django-insecure-$nldih*0%11h5y4qai&l^kzqgu8#d_6uuihs*hwy51^l)@tln3"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = 'RENDER'
+DEBUG = True
 
 ALLOWED_HOSTS = ['.vercel.app', '.now.sh','127.0.0.1']
 
@@ -77,21 +82,19 @@ TEMPLATES = [
 WSGI_APPLICATION = "ecommerce.wsgi.application"
 AUTH_USER_MODEL='accounts.Account'
 
-dotenv_file = os.path.join(BASE_DIR, ".env")
-if os.path.isfile(dotenv_file):
-    dotenv.load_dotenv(dotenv_file)
+
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
 	'default': {
-		'ENGINE':os.environ['ENGINE'],
+		'ENGINE':"django.db.backends.postgresql_psycopg2",
 		'NAME':os.environ['NAME'],
 		'USER':os.environ['USER'],
 		'PASSWORD':os.environ['PASSWORD'],
 		'HOST':os.environ['HOST'], 
-		'PORT':os.environ['PORT'] 
-	}
+		'PORT':os.environ['PORT'], 
+  }
 }
 
 
